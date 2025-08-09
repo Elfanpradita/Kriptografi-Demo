@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Compressor</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Reset & Pengaturan Dasar */
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2980b9;
+            --background-color: #ecf0f1;
+            --card-background: #ffffff;
+            --text-color: #34495e;
+            --border-color: #bdc3c7;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* Kontainer Utama */
+        .upload-container {
+            background-color: var(--card-background);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+            transition: transform 0.3s ease;
+        }
+
+        .upload-container:hover {
+            transform: translateY(-5px);
+        }
+
+        h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+            color: var(--text-color);
+        }
+        
+        p {
+            margin-bottom: 30px;
+            color: #7f8c8d;
+        }
+
+        /* Styling Form */
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        /* Menyembunyikan input file default */
+        input[type="file"] {
+            display: none;
+        }
+
+        /* Tombol "Pilih File" Kustom */
+        .custom-file-upload {
+            border: 2px dashed var(--border-color);
+            border-radius: 8px;
+            display: inline-block;
+            padding: 40px 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .custom-file-upload:hover {
+            border-color: var(--primary-color);
+            background-color: #f8f9fa;
+        }
+        
+        #file-chosen {
+            font-style: italic;
+            color: #7f8c8d;
+        }
+
+        /* Tombol Submit */
+        input[type="submit"] {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 15px 20px;
+            font-size: 1.1em;
+            font-weight: 600;
+            font-family: 'Poppins', sans-serif;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: var(--secondary-color);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="upload-container">
+        <h1>Video Compressor 🎬</h1>
+        <p>Unggah video Anda untuk diperkecil ukurannya dengan cepat dan mudah.</p>
+        
+        <form action="/" method="post" enctype="multipart/form-data">
+            <label for="video" class="custom-file-upload">
+                📂 Pilih Video...
+            </label>
+            <input type="file" id="video" name="video" required accept="video/*">
+            
+            <span id="file-chosen">Belum ada file yang dipilih</span>
+
+            <input type="submit" value="Unggah & Kompres">
+        </form>
+    </div>
+
+    <script>
+        // Ambil elemen dari DOM
+        const actualBtn = document.getElementById('video');
+        const fileChosen = document.getElementById('file-chosen');
+
+        // Tambahkan event listener saat ada perubahan pada input file
+        actualBtn.addEventListener('change', function() {
+            // Tampilkan nama file yang dipilih
+            fileChosen.textContent = this.files[0].name;
+        });
+    </script>
+
+</body>
+</html>
